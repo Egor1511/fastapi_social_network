@@ -1,5 +1,6 @@
-from sqlalchemy import String, Boolean, Integer, text
+from sqlalchemy import text
 from sqlalchemy.orm import Mapped, mapped_column, relationship
+
 from .base_model import Base, str_uniq
 
 
