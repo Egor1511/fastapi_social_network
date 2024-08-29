@@ -1,12 +1,15 @@
-from typing import Type, TypeVar, Optional, Generic
+from typing import Type, TypeVar, Optional, Generic, Union
 
 from pydantic import BaseModel
 from sqlalchemy import delete, select, update
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from .base_repository import AbstractRepository
+from ...models.article_model import Article
+from ...models.comment_model import Comment
+from ...models.user_model import User
 
-ModelType = TypeVar("ModelType", bound='InProgress')
+ModelType = TypeVar("ModelType", bound=Union[Article, Comment, User] )
 CreateSchemaType = TypeVar("CreateSchemaType", bound=BaseModel)
 UpdateSchemaType = TypeVar("UpdateSchemaType", bound=BaseModel)
 
