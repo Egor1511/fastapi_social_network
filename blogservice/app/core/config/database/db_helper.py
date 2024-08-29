@@ -8,7 +8,7 @@ from sqlalchemy.ext.asyncio import (
     async_scoped_session
 )
 
-from blogservice.app.core.config.database.db_config import settings_db
+from app.core.config.database.db_config import settings_db
 
 
 class DatabaseHelper:
