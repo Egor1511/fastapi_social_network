@@ -1,13 +1,14 @@
-from .sqlalchemy_repository import SqlAlchemyRepository
-from ...models.comment_model import Comment
-from ...models.schemas.comment_schema import CommentCreate, CommentUpdate
-from ...models.schemas.user_schema import UserCreate, UserUpdate
+from typing import Optional
+
+from ...models.schemas.user_schema import UserCreate, UserRead, UserUpdate
 from ...models.user_model import User
+from .sqlalchemy_repository import SqlAlchemyRepository
 
 
-class UserRepository(SqlAlchemyRepository[User, UserCreate, UserUpdate]):
-    def __init__(self, session):
-        super().__init__(User, session)
+class UserRepository(SqlAlchemyRepository[User, UserCreate, UserUpdate, UserRead]):
 
-    async def get_by_email(self, email: str) -> User | None:
-        return await self.get_single(email=email)
+    async def get_by_email(self, email: str) -> Optional[UserRead]:
+        return await self.find_one_or_none(email=email)
+
+
+user_repository = UserRepository(User, UserRead)

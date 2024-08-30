@@ -1,6 +1,9 @@
 from datetime import datetime
+from typing import NewType
 
 from pydantic import BaseModel
+
+PyModel = NewType("PyModel", BaseModel)
 
 
 class BaseSchema(BaseModel):
@@ -9,4 +12,4 @@ class BaseSchema(BaseModel):
     updated_at: datetime
 
     class Config:
-        orm_mode = True
+        from_attributes = True

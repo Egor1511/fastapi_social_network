@@ -1,8 +1,10 @@
-from .sqlalchemy_repository import SqlAlchemyRepository
 from ...models.comment_model import Comment
-from ...models.schemas.comment_schema import CommentCreate, CommentUpdate
+from ...models.schemas.comment_schema import CommentCreate, CommentRead, CommentUpdate
+from .sqlalchemy_repository import SqlAlchemyRepository
 
 
-class CommentRepository(SqlAlchemyRepository[Comment, CommentCreate, CommentUpdate]):
-    def __init__(self, session):
-        super().__init__(Comment, session)
+class CommentRepository(SqlAlchemyRepository[Comment, CommentCreate, CommentUpdate, CommentRead]):
+    pass
+
+
+comment_repository = CommentRepository(Comment, CommentRead)

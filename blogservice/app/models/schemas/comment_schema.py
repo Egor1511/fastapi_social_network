@@ -13,9 +13,12 @@ class CommentCreate(CommentBase):
 
 
 class CommentUpdate(CommentBase):
-    content: str | None
+    content: str | None = None
 
 
 class CommentRead(BaseSchema, CommentBase):
     article_id: int
     author_id: int
+
+    class Config:
+        from_attributes = True

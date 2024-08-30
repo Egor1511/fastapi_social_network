@@ -38,6 +38,16 @@ services:
     tty: true
     stdin_open: true
 
+  web:
+    build: .
+    container_name: blogservice_web
+    ports:
+      - "8000:8000"
+    environment:
+      - DATABASE_URL=postgresql+asyncpg://amin:my_super_password@postgres:5432/fast_api
+    depends_on:
+      - postgres
+
 volumes:
   pgdata:
     driver: local
